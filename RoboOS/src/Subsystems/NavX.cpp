@@ -1,37 +1,39 @@
+//----------SUBSYSTEM LIBRARIES----------//
 #include "NavX.h"
 #include "../RobotMap.h"
-
-AHRS NavX* = AHRS();
-
+#include "AHRS.h"
+//----------SUBSYSTEM HARDWARE DECLARATION----------//
+AHRS* NavXModule = 0;
+//----------SUBSYSTEM CONSTRUCTOR----------//
 NavX::NavX() : Subsystem("NavX") {
+	NavXModule = new NavX();
 }
-
-    
+//----------SUBSYSTEM DEFAULT COMMAND----------//
 void NavX::InitDefaultCommand() {
 
 }
-
+//----------SUBSYSTEM FUNCTIONS----------//
 float NavX::XAcceleration(){
-	return NavX->GetWorldLinearAccelX();
+	return NavXModule->GetWorldLinearAccelX();
 }
 float NavX::YAcceleration(){
-	return NavX->GetWorldLinearAccelY();
+	return NavXModule->GetWorldLinearAccelY();
 }
 float NavX::ZAcceleration(){
-	return NavX->GetWorldLinearAccelZ();
+	return NavXModule->GetWorldLinearAccelZ();
 }
 float NavX::XAngle(){
-	return NavX->GetPitch();
+	return NavXModule->GetPitch();
 }
 float NavX::YAngle(){
-	return NavX->GetRoll();
+	return NavXModule->GetRoll();
 }
 float NavX::ZAngle(){
-	return NavX->GetYaw();
+	return NavXModule->GetYaw();
 }
 float NavX::MagneticHeading(){
-	return NavX->GetCompassHeading();
+	return NavXModule->GetCompassHeading();
 }
 float NavX::FusedHeading(){
-	return NavX->GetFusedHeading();
+	return NavXModule->GetFusedHeading();
 }

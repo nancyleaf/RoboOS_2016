@@ -20,6 +20,7 @@ public:
 	Command *autonomousCommand;
 	static OI *oi;
 	LiveWindow *lw;
+	static Sharps* sharps;
 	static Drive* drive;
 	static XV11* xV11;
 	static NavX* navX;

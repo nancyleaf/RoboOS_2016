@@ -1,5 +1,6 @@
 #include "Robot.h"
 
+Sharps* Robot::sharps = 0;
 Drive* Robot::drive = 0;
 XV11* Robot::xV11 = 0;
 NavX* Robot::navX = 0;
@@ -8,6 +9,7 @@ OI* Robot::oi = 0;
 
 void Robot::RobotInit() {
 	RobotMap::init();
+	sharps = new Sharps();
 	drive = new Drive();
 	xV11 = new XV11();
 	navX = new NavX();
