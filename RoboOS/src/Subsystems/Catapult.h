@@ -1,16 +1,16 @@
-#ifndef Drive_H
-#define Drive_H
+#ifndef Catapult_H
+#define Catapult_H
 
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
 
-class Drive: public Subsystem
+class Catapult: public Subsystem
 {
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 public:
-	Drive();
+	Catapult();
 	void InitDefaultCommand();
 };
 

@@ -1,16 +1,16 @@
-#ifndef Drive_H
-#define Drive_H
+#ifndef RangeFinder_H
+#define RangeFinder_H
 
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
 
-class Drive: public Subsystem
+class RangeFinder: public Subsystem
 {
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 public:
-	Drive();
+	RangeFinder();
 	void InitDefaultCommand();
 };
 
