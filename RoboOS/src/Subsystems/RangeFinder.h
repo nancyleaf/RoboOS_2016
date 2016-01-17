@@ -12,6 +12,7 @@ private:
 public:
 	RangeFinder();
 	void InitDefaultCommand();
+	double GetDistance();
 };
 
 #endif

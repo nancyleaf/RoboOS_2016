@@ -7,11 +7,14 @@
 class Catapult: public Subsystem
 {
 private:
-	// It's desirable that everything possible under private except
-	// for methods that implement subsystem capabilities
+	DoubleSolenoid *CatapultSolenoid;
+	AnalogInput *CatapultCheckBall;
+	Timer *ShotCounter;
 public:
 	Catapult();
 	void InitDefaultCommand();
+	void Catapult::Shoot();
+	bool Catapult::Checkball();
 };
 
 #endif

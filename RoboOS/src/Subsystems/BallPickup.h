@@ -12,6 +12,9 @@ private:
 public:
 	BallPickup();
 	void InitDefaultCommand();
+	void InitMotors();
+	void PickUp(bool Active);
+	void Retract(bool Active);
 };
 
 #endif

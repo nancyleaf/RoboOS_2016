@@ -10,7 +10,11 @@
  */
 class RobotMap {
 public:
-
+	const int BallPickupMotorModule = 1;
+	const int BallPickupRetractiorModule = 1;
+	const int CatapultSolenoidModule = 1;
+	const int CapapultBallChecker = 1;
+	const int RightDriveMotor = 1;
 
 	static void init();
 };

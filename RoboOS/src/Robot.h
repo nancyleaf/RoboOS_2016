@@ -6,24 +6,28 @@
 #include "RobotMap.h"
 #include "LiveWindow/LiveWindow.h"
 
-
 #include "Commands/AutonomousCommand.h"
+
+#include "Subsystems/Ballpickup.h"
+#include "Subsystems/Catapult.h"
 #include "Subsystems/Drive.h"
 #include "Subsystems/NavX.h"
-#include "Subsystems/XV11.h"
-
+#include "Subsystems/RangeFinder.h"
 
 #include "OI.h"
 
 class Robot : public IterativeRobot {
 public:
 	Command *autonomousCommand;
-	static OI *oi;
 	LiveWindow *lw;
-	static Sharps* sharps;
-	static Drive* drive;
-	static XV11* xV11;
-	static NavX* navX;
+
+	static BallPickup *ballpickup;
+	static Catapult *catapult;
+	static Drive *drive;
+	static NavX *navx;
+	static RangeFinder *rangefinder;
+	static OI *oi;
+
 	virtual void RobotInit();
 	virtual void DisabledInit();
 	virtual void DisabledPeriodic();

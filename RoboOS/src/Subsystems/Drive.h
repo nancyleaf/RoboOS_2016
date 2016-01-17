@@ -7,11 +7,24 @@
 class Drive: public Subsystem
 {
 private:
-	// It's desirable that everything possible under private except
-	// for methods that implement subsystem capabilities
+	CANTalon *RightMotor1;
+	CANTalon *RightMotor2;
+	CANTalon *RightMotor3;
+	CANTalon *LeftMotor1;
+	CANTalon *LeftMotor2;
+	CANTalon *LeftMotor3;
 public:
 	Drive();
 	void InitDefaultCommand();
+	void InitMotors();
+	void SetRightValue(float Value);
+	void SetLeftValue(float Value);
+	void SetDistance();
+	void SetSpeed();
+	void SetPercent();
+	void SetP(double Value);
+	void SetI(double Value);
+	void SetD(double Value);
 };
 
 #endif
