@@ -1,18 +1,18 @@
-#ifndef ManualShoot_H
-#define ManualShoot_H
+#ifndef MANUALSHOOT_H
+#define MANUALSHOOT_H
 
-#include "../CommandBase.h"
-#include "WPILib.h"
+#include "Commands/Subsystem.h"
+#include "../Robot.h"
 
-class ManualShoot: public CommandBase
-{
+class ManualShoot: public Command {
 public:
 	ManualShoot();
-	void Initialize();
-	void Execute();
-	bool IsFinished();
-	void End();
-	void Interrupted();
+	virtual void Initialize();
+	virtual void Execute();
+	virtual bool IsFinished();
+	virtual void End();
+	virtual void Interrupted();
+private:
+	bool FinishedShoot;
 };
-
 #endif

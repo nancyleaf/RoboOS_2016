@@ -1,46 +1,41 @@
-#include "WPILib.h"
 #include "OI.h"
 
 #include "SmartDashboard/SmartDashboard.h"
-
+#include "Commands/ArmClimb.h"
+#include "Commands/AutoShootLeft.h"
+#include "Commands/AutoShootMiddle.h"
+#include "Commands/AutoShootRight.h"
 #include "Commands/AutonomousCommand.h"
-
-Joystick *Xbox1 = 0;
-Joystick *Xbox2 = 0;
-JoystickButton *YButton = 0;
-JoystickButton *XButton = 0;
-JoystickButton *RightBumper = 0;
-JoystickButton *LeftBumper = 0;
+#include "Commands/ManualShoot.h"
+#include "Commands/TogglePickup.h"
 
 OI::OI() {
-	SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
+    xbox2.reset(new Joystick(1));
+    xbox1.reset(new Joystick(0));
+    
+    aButton.reset(new JoystickButton(xbox1.get(), 1));
+    aButton->WhenPressed(new AutoShootMiddle());
 
-	Xbox1 = new Joystick(1);
-	Xbox2 = new Joystick(1);
-	YButton = new JoystickButton(Xbox1,1);
-	XButton = new JoystickButton(Xbox1,1);
-	RightBumper = new JoystickButton(Xbox1,1);
-	LeftBumper = new JoystickButton(Xbox1,1);
-	YButton->WhenPressed();
-	XButton->WhenPressed();
-	RightBumper->WhenPressed();
-	LeftBumper->WhenPressed();
+    bButton.reset(new JoystickButton(xbox1.get(), 1));
+    bButton->WhenPressed(new AutoShootRight());
+
+    yButton.reset(new JoystickButton(xbox1.get(), 1));
+    yButton->WhenPressed(new ArmClimb());
+
+    xButton.reset(new JoystickButton(xbox1.get(), 1));
+    xButton->WhenPressed(new AutoShootLeft());
+
+    leftBumper.reset(new JoystickButton(xbox1.get(), 1));
+    leftBumper->WhenPressed(new TogglePickup());
+
+    rightBumper.reset(new JoystickButton(xbox1.get(), 1));
+    rightBumper->WhenPressed(new ManualShoot());
 }
 
-float OI::GetStickYAxis(int Controller){
-	if(Controller == 1){
-		return Xbox1->GetRawAxis(1);
-	}else if(Controller == 2){
-		return Xbox2->GetRawAxis(1);
-	}
-	return 0;
+std::shared_ptr<Joystick> OI::getXbox1() {
+   return xbox1;
 }
 
-float OI::GetStickXAxis(int Controller){
-	if(Controller == 1){
-		return Xbox1->GetRawAxis(1);
-	}else if(Controller == 2){
-		return Xbox2->GetRawAxis(1);
-	}
-	return 0;
+std::shared_ptr<Joystick> OI::getXbox2() {
+   return xbox2;
 }

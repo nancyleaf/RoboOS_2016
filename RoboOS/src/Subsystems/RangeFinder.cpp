@@ -1,24 +1,17 @@
+#include "WPILib.h"
 #include "RangeFinder.h"
 #include "../RobotMap.h"
-#include "WPILib.h"
 
-AnalogInput *Sharp1 = 0;
-AnalogInput *Sharp2 = 0;
-AnalogInput *Sharp3 = 0;
-double TotalDistance;
-
-RangeFinder::RangeFinder() : Subsystem("ExampleSubsystem"){
-	Sharp1 = new AnalogInput(1);
-	Sharp2 = new AnalogInput(1);
-	Sharp3 = new AnalogInput(1);
+RangeFinder::RangeFinder() : Subsystem("RangeFinder") {
+    sharpSensor1 = RobotMap::rangeFinderSharpSensor1;
+    sharpSensor2 = RobotMap::rangeFinderSharpSensor2;
+    sharpSensor3 = RobotMap::rangeFinderSharpSensor3;
 }
 
-void RangeFinder::InitDefaultCommand(){
+void RangeFinder::InitDefaultCommand() {
 
 }
 
-double GetDistance() {
-		return (Sharp1 + Sharp2 + Sharp3)/3 = TotalDistance;
+int RangeFinder::GetDistance(){
+	return (sharpSensor1->GetVoltage() + sharpSensor2->GetVoltage() + sharpSensor2->GetVoltage()) / 3;
 }
-
-

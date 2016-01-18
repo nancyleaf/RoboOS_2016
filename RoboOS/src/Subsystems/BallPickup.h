@@ -1,20 +1,18 @@
-#ifndef BallPickup_H
-#define BallPickup_H
-
+#ifndef BALLPICKUP_H
+#define BALLPICKUP_H
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
 
-class BallPickup: public Subsystem
-{
+class BallPickup: public Subsystem {
 private:
-	// It's desirable that everything possible under private except
-	// for methods that implement subsystem capabilities
+	bool IsActiveVar;
+	std::shared_ptr<CANTalon> retractorMotor;
+	std::shared_ptr<CANTalon> pickupMotor;
 public:
 	BallPickup();
 	void InitDefaultCommand();
-	void InitMotors();
-	void PickUp(bool Active);
-	void Retract(bool Active);
+	void SetKnownState();
+	void ActivePickup(bool Active);
+	bool IsActive();
 };
-
 #endif

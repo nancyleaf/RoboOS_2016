@@ -1,35 +1,34 @@
-#include "BallPickup.h"
 #include "WPILib.h"
+#include "BallPickup.h"
 #include "../RobotMap.h"
 
-CANTalon *PickUpMotor = 0;
-CANTalon *RetractMotor = 0;
-
-BallPickup::BallPickup() : Subsystem("Ballpickup"){
-	PickUpMotor = new CANTalon(BallPickupMotorModule);
-	RetractMotor = new CANTalon(BallPickupRetractiorModule);
+BallPickup::BallPickup() : Subsystem("BallPickup"){
+	IsActiveVar = true;
+    retractorMotor = RobotMap::ballPickupRetractorMotor;
+    pickupMotor = RobotMap::ballPickupPickupMotor;
 }
 
 void BallPickup::InitDefaultCommand(){
 
 }
 
-void BallPickup::InitMotors(){
-	RetractMotor->SetControlMode(CANSpeedController::kPosition);
+void BallPickup::SetKnownState(){
+	retractorMotor->Set(1);
+	pickupMotor->Set(1);
 }
 
-void BallPickup::PickUp(bool Active){
+void BallPickup::ActivePickup(bool Active){
 	if(Active){
-		PickUpMotor->Set(1);
+		retractorMotor->Set(1);
+		pickupMotor->Set(1);
+		IsActiveVar = true;
 	}else{
-		PickUpMotor->Set(0);
+		retractorMotor->Set(-1);
+		pickupMotor->Set(0);
+		IsActiveVar = false;
 	}
 }
 
-void BallPickup::Retract(bool Active) {
-	if(Active == false){
-		RetractMotor->Set(1);
-	}else{
-		RetractMotor->Set(0);
-	}
+bool BallPickup::IsActive(){
+	return IsActiveVar;
 }

@@ -1,20 +1,16 @@
-#ifndef Catapult_H
-#define Catapult_H
-
+#ifndef CATAPULT_H
+#define CATAPULT_H
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
 
-class Catapult: public Subsystem
-{
+class Catapult: public Subsystem {
 private:
-	DoubleSolenoid *CatapultSolenoid;
-	AnalogInput *CatapultCheckBall;
-	Timer *ShotCounter;
+	int CountHolder;
+	std::shared_ptr<DoubleSolenoid> catapultSolenoid;
 public:
 	Catapult();
 	void InitDefaultCommand();
-	void Catapult::Shoot();
-	bool Catapult::Checkball();
+	void SetKnownState();
+	void Shoot();
 };
-
 #endif

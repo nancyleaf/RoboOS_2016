@@ -1,39 +1,29 @@
 #include "ManualShoot.h"
 
-bool shot;
+bool FinishedShoot;
 
-ManualShoot::ManualShoot()
-{
-	Requires(catapult);
+ManualShoot::ManualShoot(): Command(){
+	FinishedShoot = false;
+	Requires(Robot::catapult.get());
 }
 
-// Called just before this Command runs the first time
-void ManualShoot::Initialize()
-{
+void ManualShoot::Initialize() {
 	Robot::catapult->Shoot();
-	shot = true;
-}
-// Called repeatedly when this Command is scheduled to run
-void ManualShoot::Execute()
-{
-
+	FinishedShoot = true;
 }
 
-// Make this return true when this Command no longer needs to run execute()
-bool ManualShoot::IsFinished()
-{
-	return shot;
-}
-
-// Called once after isFinished returns true
-void ManualShoot::End()
-{
+void ManualShoot::Execute() {
 
 }
 
-// Called when another command which requires one or more of the same
-// subsystems is scheduled to run
-void ManualShoot::Interrupted()
-{
+bool ManualShoot::IsFinished() {
+    return FinishedShoot;
+}
+
+void ManualShoot::End() {
+
+}
+
+void ManualShoot::Interrupted() {
 
 }

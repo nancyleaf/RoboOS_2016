@@ -1,39 +1,46 @@
-//----------SUBSYSTEM LIBRARIES----------//
+#include "WPILib.h"
+#include "AHRS.h"
 #include "NavX.h"
 #include "../RobotMap.h"
-#include "AHRS.h"
-//----------SUBSYSTEM HARDWARE DECLARATION----------//
-AHRS* NavXModule = 0;
-//----------SUBSYSTEM CONSTRUCTOR----------//
+
+AHRS *NavXMXP = 0;
+
 NavX::NavX() : Subsystem("NavX") {
-	NavXModule = new NavX();
+    NavXMXP = new AHRS(SPI::Port::kMXP);
 }
-//----------SUBSYSTEM DEFAULT COMMAND----------//
+
 void NavX::InitDefaultCommand() {
 
 }
-//----------SUBSYSTEM FUNCTIONS----------//
-float NavX::XAcceleration(){
-	return NavXModule->GetWorldLinearAccelX();
+
+float NavX::GetFusedHeading(){
+	return NavXMXP->GetFusedHeading();
 }
-float NavX::YAcceleration(){
-	return NavXModule->GetWorldLinearAccelY();
+
+float NavX::GetMagneticHeading(){
+	return NavXMXP->GetCompassHeading();
 }
-float NavX::ZAcceleration(){
-	return NavXModule->GetWorldLinearAccelZ();
+
+float NavX::GetXAngle(){
+	return NavXMXP->GetPitch();
 }
-float NavX::XAngle(){
-	return NavXModule->GetPitch();
+
+float NavX::GetYAngle(){
+	return NavXMXP->GetRoll();
 }
-float NavX::YAngle(){
-	return NavXModule->GetRoll();
+
+float NavX::GetZAngle(){
+	return NavXMXP->GetYaw();
 }
-float NavX::ZAngle(){
-	return NavXModule->GetYaw();
+
+float NavX::GetXAcceleration(){
+	return NavXMXP->GetWorldLinearAccelX();
 }
-float NavX::MagneticHeading(){
-	return NavXModule->GetCompassHeading();
+
+float NavX::GetYAcceleration(){
+	return NavXMXP->GetWorldLinearAccelY();
 }
-float NavX::FusedHeading(){
-	return NavXModule->GetFusedHeading();
+
+float NavX::GetZAcceleration(){
+	return NavXMXP->GetWorldLinearAccelZ();
 }

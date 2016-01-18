@@ -1,11 +1,10 @@
 #ifndef DriveCommand_H
 #define DriveCommand_H
 
-#include "../CommandBase.h"
-#include "WPILib.h"
+#include "Commands/Subsystem.h"
+#include "../Robot.h"
 
-class DriveCommand: public CommandBase
-{
+class DriveCommand: public Command{
 public:
 	DriveCommand();
 	void Initialize();
@@ -14,5 +13,4 @@ public:
 	void End();
 	void Interrupted();
 };
-
 #endif

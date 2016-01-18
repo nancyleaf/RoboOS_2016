@@ -3,26 +3,19 @@
 
 #include "WPILib.h"
 
-Joystick *Xbox1;
-Joystick *Xbox2;
-
-class OI {
+class OI{
 private:
-	Joystick *Xbox1;
-	Joystick *Xbox2;
-	JoystickButton *YButton;
-	JoystickButton *XButton;
-	JoystickButton *RightBumper;
-	JoystickButton *LeftBumper;
+	std::shared_ptr<Joystick> xbox2;
+	std::shared_ptr<Joystick> xbox1;
+	std::shared_ptr<JoystickButton> aButton;
+	std::shared_ptr<JoystickButton> bButton;
+	std::shared_ptr<JoystickButton> yButton;
+	std::shared_ptr<JoystickButton> xButton;
+	std::shared_ptr<JoystickButton> leftBumper;
+	std::shared_ptr<JoystickButton> rightBumper;
 public:
 	OI();
-	float GetStickYAxis(int Controller);
-	float GetStickXAxis(int Controller);
-
-
-
-
-
+	std::shared_ptr<Joystick> getXbox1();
+	std::shared_ptr<Joystick> getXbox2();
 };
-
 #endif

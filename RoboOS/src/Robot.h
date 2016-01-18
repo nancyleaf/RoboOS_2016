@@ -7,26 +7,26 @@
 #include "LiveWindow/LiveWindow.h"
 
 #include "Commands/AutonomousCommand.h"
-
-#include "Subsystems/Ballpickup.h"
+#include "Subsystems/BallPickup.h"
 #include "Subsystems/Catapult.h"
-#include "Subsystems/Drive.h"
+#include "Subsystems/Drivetrain.h"
 #include "Subsystems/NavX.h"
 #include "Subsystems/RangeFinder.h"
 
 #include "OI.h"
 
-class Robot : public IterativeRobot {
+class Robot : public IterativeRobot{
 public:
-	Command *autonomousCommand;
-	LiveWindow *lw;
 
-	static BallPickup *ballpickup;
-	static Catapult *catapult;
-	static Drive *drive;
-	static NavX *navx;
-	static RangeFinder *rangefinder;
-	static OI *oi;
+	std::unique_ptr<Command> autonomousCommand;
+	static std::unique_ptr<OI> oi;
+	LiveWindow *lw = LiveWindow::GetInstance();
+
+    static std::shared_ptr<Catapult> catapult;
+    static std::shared_ptr<Drivetrain> drivetrain;
+    static std::shared_ptr<NavX> navX;
+    static std::shared_ptr<RangeFinder> rangeFinder;
+    static std::shared_ptr<BallPickup> ballPickup;
 
 	virtual void RobotInit();
 	virtual void DisabledInit();
