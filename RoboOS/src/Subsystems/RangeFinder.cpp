@@ -1,17 +1,20 @@
-#include "WPILib.h"
 #include "RangeFinder.h"
 #include "../RobotMap.h"
 
 RangeFinder::RangeFinder() : Subsystem("RangeFinder") {
-    sharpSensor1 = RobotMap::rangeFinderSharpSensor1;
-    sharpSensor2 = RobotMap::rangeFinderSharpSensor2;
-    sharpSensor3 = RobotMap::rangeFinderSharpSensor3;
+    rangeFinderUltrasonic = RobotMap::rangeFinderRangeFinderUltrasonic;
 }
 
 void RangeFinder::InitDefaultCommand() {
 
 }
 
-int RangeFinder::GetDistance(){
-	return (sharpSensor1->GetVoltage() + sharpSensor2->GetVoltage() + sharpSensor2->GetVoltage()) / 3;
+void RangeFinder::MaintainRangeFinder() {
+	rangeFinderUltrasonic->SetAutomaticMode(true);
 }
+
+double RangeFinder::GetDistance() {
+	return rangeFinderUltrasonic->GetRangeInches();
+}
+
+

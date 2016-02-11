@@ -1,26 +1,22 @@
 #ifndef DRIVETRAIN_H
 #define DRIVETRAIN_H
+
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
 
 class Drivetrain: public Subsystem {
 private:
-	std::shared_ptr<CANTalon> rightMotor1;
-	std::shared_ptr<CANTalon> rightMotor2;
-	std::shared_ptr<CANTalon> rightMotor3;
-	std::shared_ptr<CANTalon> leftMotor1;
-	std::shared_ptr<CANTalon> leftMotor2;
-	std::shared_ptr<CANTalon> leftMotor3;
+	std::shared_ptr<CANTalon> rightFront;
+	std::shared_ptr<CANTalon> rightMiddle;
+	std::shared_ptr<CANTalon> rightBack;
+	std::shared_ptr<CANTalon> leftFront;
+	std::shared_ptr<CANTalon> leftMiddle;
+	std::shared_ptr<CANTalon> leftBack;
 public:
 	Drivetrain();
 	void InitDefaultCommand();
-	void SetKnownState();
+	void MaintainMotors();
 	void SetDriveValues(float Left, float Right);
-	void SetSpeedMode();
-	void SetPositionMode();
-	void SetVoltageMode();
-	void SetPercentMode();
-	void SetCurrentMode();
-	void SetVoltageRamp();
+	void SetMode(CANSpeedController::ControlMode ControlMode);
 };
 #endif
